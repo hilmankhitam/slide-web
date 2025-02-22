@@ -4,8 +4,8 @@ type Props = {}
 
 const Page = async (props: Props) => {
 
-    // server action onboard the user
-    // 200 || 201
+    //WIP: server action onboard the user
+    //WIP: 200 || 201
   return (
     <div>Page</div>
   )
