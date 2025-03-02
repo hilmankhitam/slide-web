@@ -27,13 +27,13 @@ model User {
 }
 
 model Subscription {
-  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  User      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String?  @unique @db.Uuid
-  planId    String
-  status    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  User       User?             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String?           @unique @db.Uuid
+  createdAt  DateTime          @default(now())
+  plan       SUBSCRIPTION_PLAN @default(FREE)
+  updatedAt  DateTime          @default(now())
+  customerId String?           @unique
 }
 
 model Integrations {
@@ -48,17 +48,17 @@ model Integrations {
 }
 
 model Automation {
-  id        String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  name      String     @default("Untitled")
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  active    Boolean    @default(false)
-  trigger  Trigger[]
-  listener Listener?
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String    @default("Untitled")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  active    Boolean   @default(false)
+  trigger   Trigger[]
+  listener  Listener?
   posts     Post[]
   dms       Dms[]
-  User      User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId    String?    @db.Uuid
+  User      User?     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?   @db.Uuid
   keywords  Keyword[]
 }
 
@@ -101,10 +101,10 @@ model Trigger {
 }
 
 model Keyword {
-  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  word     String
-  Automation  Automation? @relation(fields: [automationId], references: [id], onDelete: Cascade)
-  automationId String?    @db.Uuid
+  id           String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  word         String
+  Automation   Automation? @relation(fields: [automationId], references: [id], onDelete: Cascade)
+  automationId String?     @db.Uuid
 }
 
 enum SUBSCRIPTION_PLAN {
