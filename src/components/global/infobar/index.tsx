@@ -2,7 +2,7 @@
 
 import { PAGE_BREAD_CRUMBS } from "@/constants/pages";
 import { usePaths } from "@/hooks/use-nav";
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import React from "react";
 import { SubscriptionPlan } from "../subscription-plan";
 import UpgradeCard from "../sidebar/upgrade";
@@ -13,19 +13,24 @@ import Sheet from "../sheet";
 import Items from "../sidebar/items";
 import { LogoSmall } from "@/svgs/logo-small";
 import CreateAutomation from "../create-automation";
+import Notifications from "./notifications";
+import Search from "./search";
+import MainBreadCrumb from "../bread-crumbs/main-bread-crumb";
+
+
 
 type Props = {
   slug: string;
 };
 
-const Navbar = ({ slug }: Props) => {
+const InfoBar = ({ slug }: Props) => {
   const { page } = usePaths();
   const currentPage = PAGE_BREAD_CRUMBS.includes(page) || page == slug;
   return (
     currentPage && (
       <div className="flex flex-col">
         <div className="flex gap-x-3 lg:gap-x-5 justify-end">
-          <span className="lg:hidden flex items center flex-1 gap-x-2">
+          <span className="lg:hidden flex items-center flex-1 gap-x-2">
             <Sheet side="left" trigger={<Menu />} className="lg:hidden">
               <div className="flex flex-col gap-y-5 w-full h-full p-3 bg-[#0e0e0e] bg-opacity-90 bg-clip-padding backdrop-filter backdrop--blur__safari backdrop-blur-3xl">
                 <div className="flex gap-x-2 items-center p-5 justify-center">
@@ -58,12 +63,17 @@ const Navbar = ({ slug }: Props) => {
               </div>
             </Sheet>
           </span>
-          
+          <Search />
           <CreateAutomation />
+          <Notifications />
+          
         </div>
+        <MainBreadCrumb 
+            page={page === slug ? 'Home' : page } slug={slug}
+          />
       </div>
     )
   );
 };
 
-export default Navbar;
+export default InfoBar;
