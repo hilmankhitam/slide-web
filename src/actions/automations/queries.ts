@@ -58,17 +58,83 @@ export const findAutomation = async (id: string) => {
 export const updateAutomation = async (
   id: string,
   update: {
-    name?: string,
-    active?: boolean
+    name?: string;
+    active?: boolean;
   }
 ) => {
   return await client.automation.update({
     where: {
-      id
+      id,
     },
     data: {
       name: update.name,
-      active: update.active
-    }
-  })
-}
+      active: update.active,
+    },
+  });
+};
+
+export const addListener = async (
+  automationId: string,
+  listener: "SMARTAI" | "MESSAGE",
+  prompt: string,
+  reply?: string
+) => {
+  return await client.automation.update({
+    where: { id: automationId },
+    data: {
+      listener: {
+        create: {
+          listener,
+          prompt,
+          commentReply: reply,
+        },
+      },
+    },
+  });
+};
+
+export const addTrigger = async (automationId: string, trigger: string[]) => {
+  if (trigger.length === 2) {
+    return await client.automation.update({
+      where: {
+        id: automationId,
+      },
+      data: {
+        trigger: {
+          createMany: {
+            data: [{ type: trigger[0] }, { type: trigger[1] }],
+          },
+        },
+      },
+    });
+  }
+  return await client.automation.update({
+    where: { id: automationId },
+    data: {
+      trigger: {
+        create: { type: trigger[0] },
+      },
+    },
+  });
+};
+
+export const addKeyword = async (automationId: string, keyword: string) => {
+  return client.automation.update({
+    where: {
+      id: automationId,
+    },
+    data: {
+      keywords: {
+        create: {
+          word: keyword,
+        },
+      },
+    },
+  });
+};
+
+export const deleteKeywordQuery = async (id: string) => {
+  return await client.keyword.delete({
+    where: { id },
+  });
+};

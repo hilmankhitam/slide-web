@@ -2,7 +2,11 @@
 
 import { onCurrentUser } from "../user";
 import {
+  addKeyword,
+  addListener,
+  addTrigger,
   createAutomation,
+  deleteKeywordQuery,
   findAutomation,
   getAutomations,
   updateAutomation,
@@ -58,5 +62,54 @@ export const updateAutomationName = async (
     return { status: 404, data: "Oops! could not find automation" };
   } catch (error) {
     return { status: 500, data: "Oops! something went wrong" };
+  }
+};
+
+export const saveListener = async (
+  automationId: string,
+  listener: "SMARTAI" | "MESSAGE",
+  prompt: string,
+  reply?: string
+) => {
+  await onCurrentUser();
+  try {
+    const create = await addListener(automationId, listener, prompt, reply);
+    if (create) return { status: 200, data: "Listener created." };
+    return { status: 404, data: "Cant save listener." };
+  } catch (error) {
+    return { status: 500, data: "Oops! something went wrong." };
+  }
+};
+
+export const saveTrigger = async (automationId: string, trigger: string[]) => {
+  await onCurrentUser();
+  try {
+    const create = await addTrigger(automationId, trigger);
+    if (create) return { status: 200, data: "Trigger created." };
+    return { status: 404, data: "Cant save trigger" };
+  } catch (error) {
+    return { status: 500, data: "Oops! someting went wrong" };
+  }
+};
+
+export const saveKeyword = async (automationId: string, keyword: string) => {
+  await onCurrentUser();
+  try {
+    const create = await addKeyword(automationId, keyword);
+    if (create) return { status: 200, data: "Keyword added successfully." };
+    return { status: 404, data: "Cant add this keyword" };
+  } catch (error) {
+    return { status: 500, data: "Oops! someting went wrong" };
+  }
+};
+
+export const deleteKeyword = async (id: string) => {
+  await onCurrentUser();
+  try {
+    const deleted = await deleteKeywordQuery(id);
+    if (deleted) return { status: 200, data: "Keyword deleted." };
+    return { status: 404, data: "Cant delete this keyword" };
+  } catch (error) {
+    return { status: 500, data: "Oops! someting went wrong" };
   }
 };
