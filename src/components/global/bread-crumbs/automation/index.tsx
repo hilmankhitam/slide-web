@@ -7,6 +7,7 @@ import { useQueryAutomation } from "@/hooks/use-queries";
 import { useEditAutomation } from "@/hooks/use-automations";
 import { useMutationDataState } from "@/hooks/use-mutation-data";
 import { Input } from "@/components/ui/input";
+import InfoBar from "../../infobar";
 
 type Props = {
   id: string;
@@ -60,7 +61,7 @@ const AutomationsBreadCrumb = ({ id }: Props) => {
           </p>
         </div>
       </div>
-      <ActivateAutomationButton />
+      <ActivateAutomationButton id={id}/>
     </div>
   );
 };

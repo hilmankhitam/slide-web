@@ -75,7 +75,7 @@ model Dms {
 model Post {
   id           String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   postId       String
-  caption      String
+  caption      String?
   media        String
   mediaType    MEDIATYPE   @default(IMAGE)
   Automation   Automation? @relation(fields: [automationId], references: [id], onDelete: Cascade)
