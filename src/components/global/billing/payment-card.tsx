@@ -2,12 +2,13 @@
 import { Button } from "@/components/ui/button";
 import { PLANS } from "@/constants/plan";
 import { cn } from "@/lib/utils";
+import { SUBSCRIPTION_PLAN } from "@prisma/client";
 import { CircleCheck } from "lucide-react";
 import React from "react";
 
 type Props = {
   label: string;
-  current: "PRO" | "FREE";
+  current: SUBSCRIPTION_PLAN;
   landing?: boolean;
 };
 
