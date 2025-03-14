@@ -83,14 +83,14 @@ model Post {
 }
 
 model Listener {
-  id           String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  Automation   Automation? @relation(fields: [automationId], references: [id], onDelete: Cascade)
-  automationId String?     @unique @db.Uuid
-  listener     LISTENERS   @default(MESSAGE)
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  Automation   Automation @relation(fields: [automationId], references: [id], onDelete: Cascade)
+  automationId String     @unique @db.Uuid
+  listener     LISTENERS  @default(MESSAGE)
   prompt       String
   commentReply String?
-  dmCount      Int?        @default(0)
-  commentCount Int?        @default(0)
+  dmCount      Int        @default(0)
+  commentCount Int        @default(0)
 }
 
 model Trigger {
