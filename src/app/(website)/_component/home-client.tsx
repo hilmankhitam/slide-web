@@ -142,7 +142,7 @@ export default function HomeClient() {
             className="relative h-60 md:h-96 w-full mt-12"
           >
             <Image
-              src="/Ig-creators.png"
+              src="https://placehold.co/600x400/png"
               alt="Community members"
               fill
               className="object-cover rounded-xl shadow-2xl"

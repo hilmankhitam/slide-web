@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import HomeClient from "./_component/home-client";
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   keywords: [
     "Instagram automation",
