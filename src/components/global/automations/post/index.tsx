@@ -41,16 +41,27 @@ const PostButton = ({ id }: Props) => {
                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50"
                   />
                 )}
-                <Image
-                  fill
-                  sizes="100vw"
-                  src={post.media_url}
-                  alt="post image"
-                  className={cn(
-                    "hover:opacitiy-75 transition duration-100",
-                    posts.find((p) => p.postId === post.id) && "opacity-75"
-                  )}
-                />
+                {post.media_type === "IMAGE" ? (
+                  <Image
+                    fill
+                    sizes="100vw"
+                    src={post.media_url}
+                    alt="post image"
+                    className={cn(
+                      "hover:opacitiy-75 transition duration-100",
+                      posts.find((p) => p.postId === post.id) && "opacity-75"
+                    )}
+                  />
+                ) : (
+                  <video
+                    autoPlay={false}
+                    src={post.media_url}
+                    className={cn(
+                      "hover:opacitiy-75 transition duration-100",
+                      posts.find((p) => p.postId === post.id) && "opacity-75"
+                    )}
+                  />
+                )}
               </div>
             ))}
           </div>

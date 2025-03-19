@@ -1,8 +1,9 @@
-'use client'
+"use client";
 import { Separator } from "@/components/ui/separator";
 import { useQueryAutomation } from "@/hooks/use-queries";
 import { InstagramBlue } from "@/icons/instagram-blue";
 import { Warning } from "@/icons/warning";
+import { MEDIATYPE } from "@prisma/client";
 import Image from "next/image";
 import React from "react";
 
@@ -34,14 +35,16 @@ const PostNode = ({ id }: Props) => {
             <p className="font-bold text-lg">These posts</p>
           </div>
           <div className="flex gap-x-2 flex-wrap mt-3">
-            {data.data.posts.map((post)=> (
-              <div key={post.id} className="relative w-4/12 aspect-square rounded-lg cursor-pointer overflow-hidden">
-                <Image 
-                  fill
-                  sizes="100vw"
-                  src={post.media}
-                  alt="post image"
-                />
+            {data.data.posts.map((post) => (
+              <div
+                key={post.id}
+                className="relative w-4/12 aspect-square rounded-lg cursor-pointer overflow-hidden"
+              >
+                {post.mediaType === MEDIATYPE.IMAGE ? (
+                  <Image fill sizes="100vw" src={post.media} alt="post image" />
+                ) : (
+                  <video src={post.media} autoPlay={false} />
+                )}
               </div>
             ))}
           </div>

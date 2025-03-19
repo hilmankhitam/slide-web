@@ -1,10 +1,15 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { onCurrentUser } from "../user";
-import { createIntegration, getIntegration } from "./queries";
+import { onCurrentUser, onUserInfo } from "../user";
+import {
+  createIntegration,
+  deleteIntegration,
+  getIntegration,
+} from "./queries";
 import { generateTokens } from "@/lib/fetch";
 import axios from "axios";
+import { capitalize } from "@/lib/utils";
 
 export const on0AuthInstagram = (strategy: "INSTAGRAM" | "CRM") => {
   if (strategy === "INSTAGRAM") {

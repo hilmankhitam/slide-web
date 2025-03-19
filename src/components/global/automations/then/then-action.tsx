@@ -75,7 +75,7 @@ const ThenAction = ({ id }: Props) => {
           />
           <Input
             {...register("reply")}
-            placeholder="Add an reply for comments (Optional)"
+            placeholder="Add an reply for comments (Unavailable)"
             className="bg-background-80 outline-none border-none ring-0 focus:ring-0"
           />
           <Button className="bg-gradient-to-br from-[#3352cc] w-full font-medium text-white to-[#1c2d70]">

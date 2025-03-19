@@ -7,9 +7,21 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
-    domains: [
-        "randomuser.me"
-    ]
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "instagram.fbdj6-1.fna.fbcdn.net",
+      },
+      {
+        protocol: "https",
+        hostname: "scontent.cdninstagram.com",
+      },
+      {
+        protocol: "https",
+        hostname: "randomuser.me",
+      },
+    ],
+    
   },
 };
 
