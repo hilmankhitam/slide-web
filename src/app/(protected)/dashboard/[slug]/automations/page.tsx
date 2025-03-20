@@ -3,6 +3,8 @@ import CreateAutomation from '@/components/global/create-automation'
 import { Check } from 'lucide-react'
 import React from 'react'
 
+export const dynamic = 'force-dynamic';
+
 type Props = {}
 
 const Page = (props: Props) => {
