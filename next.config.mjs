@@ -22,10 +22,9 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "placehold.co"
-      }
+        hostname: "placehold.co",
+      },
     ],
-    
   },
 };
 
