@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import HomeClient from "./_component/home-client";
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   keywords: [
     "Instagram automation",
