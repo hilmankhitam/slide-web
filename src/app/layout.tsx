@@ -7,6 +7,10 @@ import { Toaster } from "sonner";
 import ReactQueryProvider from "@/providers/react-query-provider";
 import ReduxProvider from "@/providers/redux-provider";
 
+export const dynamic = "force-dynamic";
+
+export const runtaime = "edge";
+
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
