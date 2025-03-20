@@ -1,21 +1,19 @@
-import { INTEGRATION_CARD } from '@/constants/integrations'
-import React from 'react'
-import IntegrationCard from './_components/integration-card/page'
+import { INTEGRATION_CARD } from "@/constants/integrations";
+import React from "react";
+import IntegrationCard from "./_components/integration-card/page";
 
-export const dynamic = 'force-dynamic';
-
-type Props = {}
+type Props = {};
 
 const Page = (props: Props) => {
   return (
-    <div className='flex justify-center'>
-        <div className='flex flex-col w-full lg:w-8/12 gap-y-5'>
-        {INTEGRATION_CARD.map((card, key)=> (
-            <IntegrationCard key={key} {...card}/>
+    <div className="flex justify-center">
+      <div className="flex flex-col w-full lg:w-8/12 gap-y-5">
+        {INTEGRATION_CARD.map((card, key) => (
+          <IntegrationCard key={key} {...card} />
         ))}
-        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

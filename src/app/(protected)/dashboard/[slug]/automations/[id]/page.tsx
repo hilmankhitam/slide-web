@@ -8,10 +8,12 @@ import {
   PrefetchUserAutomation,
   PrefetchUserAutomations,
 } from "@/react-query/prefetch";
-import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 import React from "react";
-
-export const dynamic = 'force-dynamic';
 
 type Props = {
   params: { id: string };
@@ -29,19 +31,18 @@ const Page = async ({ params }: Props) => {
   await PrefetchUserAutomation(query, params.id);
   return (
     <HydrationBoundary state={dehydrate(query)}>
-
-    <div className="flex flex-col items-center gap-y-20">
-      <AutomationsBreadCrumb id={params.id} />
-      <div className="w-full lg:w-10/12 xl:w-6/12 p-5 rounded-xl flex flex-col bg-[#1d1d1d] gap-y-3">
-        <div className="flex gap-x-2">
-          <Warning />
-          When...
+      <div className="flex flex-col items-center gap-y-20">
+        <AutomationsBreadCrumb id={params.id} />
+        <div className="w-full lg:w-10/12 xl:w-6/12 p-5 rounded-xl flex flex-col bg-[#1d1d1d] gap-y-3">
+          <div className="flex gap-x-2">
+            <Warning />
+            When...
+          </div>
+          <Trigger id={params.id} />
         </div>
-        <Trigger id={params.id} />
+        <ThenNode id={params.id} />
+        <PostNode id={params.id} />
       </div>
-      <ThenNode id={params.id}/>
-      <PostNode id={params.id}/>
-    </div>
     </HydrationBoundary>
   );
 };

@@ -5,8 +5,6 @@ import React from "react";
 import Chart from "./_components/metrics";
 import MetricsCard from "./_components/metrics/metrics-card";
 
-export const dynamic = 'force-dynamic';
-
 type Props = {};
 
 const Page = (props: Props) => {
