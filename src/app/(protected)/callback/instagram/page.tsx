@@ -1,8 +1,6 @@
 import { onIntegrate } from "@/actions/integrations";
 import { redirect } from "next/navigation";
 
-export const dynamic = 'force-dynamic';
-
 type Props = {
   searchParams: {
     code: string;
