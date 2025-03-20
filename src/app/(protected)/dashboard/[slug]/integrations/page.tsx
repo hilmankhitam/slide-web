@@ -2,6 +2,8 @@ import { INTEGRATION_CARD } from '@/constants/integrations'
 import React from 'react'
 import IntegrationCard from './_components/integration-card/page'
 
+export const dynamic = 'force-dynamic';
+
 type Props = {}
 
 const Page = (props: Props) => {
