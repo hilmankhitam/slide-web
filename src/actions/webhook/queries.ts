@@ -19,6 +19,7 @@ export const getKeywordAutomation = async (
     where: {
       id: automationId,
     },
+
     include: {
       dms: dm,
       trigger: {
@@ -44,16 +45,13 @@ export const getKeywordAutomation = async (
     },
   });
 };
-
-export const trackedResponses = async (
+export const trackResponses = async (
   automationId: string,
   type: "COMMENT" | "DM"
 ) => {
   if (type === "COMMENT") {
     return await client.listener.update({
-      where: {
-        automationId,
-      },
+      where: { automationId },
       data: {
         commentCount: {
           increment: 1,
@@ -77,7 +75,7 @@ export const trackedResponses = async (
 export const createChatHistory = (
   automationId: string,
   sender: string,
-  receiver: string,
+  reciever: string,
   message: string
 ) => {
   return client.automation.update({
@@ -87,7 +85,7 @@ export const createChatHistory = (
     data: {
       dms: {
         create: {
-          receiver,
+          reciever,
           senderId: sender,
           message,
         },
@@ -99,26 +97,25 @@ export const createChatHistory = (
 export const getKeywordPost = async (postId: string, automationId: string) => {
   return await client.post.findFirst({
     where: {
-      AND: [{ postId }, { automationId }],
+      AND: [{ postid: postId }, { automationId }],
     },
     select: { automationId: true },
   });
 };
 
-export const getChatHistory = async (sender: string, receiver: string) => {
+export const getChatHistory = async (sender: string, reciever: string) => {
   const history = await client.dms.findMany({
     where: {
-      AND: [{ senderId: sender }, { receiver }],
+      AND: [{ senderId: sender }, { reciever }],
     },
     orderBy: { createdAt: "asc" },
   });
-
   const chatSession: {
     role: "assistant" | "user";
     content: string;
   }[] = history.map((chat) => {
     return {
-      role: chat.receiver ? "assistant" : "user",
+      role: chat.reciever ? "assistant" : "user",
       content: chat.message!,
     };
   });

@@ -5,7 +5,7 @@ import {
   getKeywordAutomation,
   getKeywordPost,
   matchKeyword,
-  trackedResponses,
+  trackResponses,
 } from "@/actions/webhook/queries";
 import { sendDM, sendPrivateMessage } from "@/lib/fetch";
 import { openai } from "@/lib/openai";
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
             );
 
             if (direct_message.status === 200) {
-              const tracked = await trackedResponses(automation.id, "DM");
+              const tracked = await trackResponses(automation.id, "DM");
               if (tracked) {
                 await trackAnalytics(automation.userId!, "dm").catch(
                   console.error
@@ -118,7 +118,7 @@ export async function POST(req: NextRequest) {
               );
 
               if (direct_message.status === 200) {
-                const tracked = await trackedResponses(automation.id, "DM");
+                const tracked = await trackResponses(automation.id, "DM");
                 if (tracked) {
                   await trackAnalytics(automation.userId!, "dm").catch(
                     console.error
@@ -185,7 +185,7 @@ export async function POST(req: NextRequest) {
 
               console.log("DM SENT", direct_message.data);
               if (direct_message.status === 200) {
-                const tracked = await trackedResponses(automation.id, "COMMENT");
+                const tracked = await trackResponses(automation.id, "COMMENT");
 
                 if (tracked) {
                   await trackAnalytics(automation.userId!, "comment").catch(
@@ -240,7 +240,7 @@ export async function POST(req: NextRequest) {
                 );
 
                 if (direct_message.status === 200) {
-                  const tracked = await trackedResponses(
+                  const tracked = await trackResponses(
                     automation.id,
                     "COMMENT"
                   );

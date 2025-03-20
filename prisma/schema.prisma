@@ -66,17 +66,17 @@ model Automation {
 
 model Dms {
   id           String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  Automation   Automation? @relation(fields: [automationId], references: [id], onDelete: Cascade)
+  Automation   Automation? @relation(fields: [automationId], references: [id])
   automationId String?     @db.Uuid
   createdAt    DateTime    @default(now())
   senderId     String?
-  receiver     String?
+  reciever     String?
   message      String?
 }
 
 model Post {
   id           String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  postId       String
+  postid       String
   caption      String?
   media        String
   mediaType    MEDIATYPE   @default(IMAGE)
