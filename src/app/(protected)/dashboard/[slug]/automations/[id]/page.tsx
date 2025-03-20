@@ -11,6 +11,8 @@ import {
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 import React from "react";
 
+export const dynamic = 'force-dynamic';
+
 type Props = {
   params: { id: string };
 };
